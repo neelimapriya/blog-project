@@ -13,7 +13,7 @@ app.use(cors())
 // app.use('/api/v1');
 
 const getAController = (req: Request, res: Response) => {
-  res.send("Blog Project server");
+  res.send("Blog Project server is running!");
 };
 app.get("/", getAController);
 

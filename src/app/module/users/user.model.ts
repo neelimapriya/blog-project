@@ -6,6 +6,7 @@ import config from "../../config";
 
 const userSchema = new Schema<TUser,UserModel>(
   {
+    
     name: {
       type: String,
       required: [true, "Full Name is required"],

@@ -22,7 +22,7 @@ const updateBlog = catchAsync(async (req, res) => {
   const user = req.user._id;
 //   console.log(user, "user");
   const payload = req.body;
-  const result = await blogService.UpdateBlogFromDb(id, user, payload);
+  const result = await blogService.UpdateBlogFromDb( user,id, payload);
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,

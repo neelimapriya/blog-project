@@ -29,16 +29,16 @@ const UpdateBlogFromDb = async (
   id: string,
   payload: Partial<IBlog>
 ): Promise<IBlog> => {
-  // console.log(user , id);
+  console.log(user , id);
   // find blog from db
   const blog = await Blog.findById(id)
-  // console.log(blog);
+  console.log(blog);
   if (!blog) {
     throw new AppError(StatusCodes.NOT_FOUND, "Blog not found!");
   }
 
   // match  blog author with logged in user
-  if (blog.userId.toString() !== user) {
+  if (blog.userId.toString() !== user.toString()) {
     throw new AppError(
       StatusCodes.FORBIDDEN,
       "Only author of this blog can update the blog!"

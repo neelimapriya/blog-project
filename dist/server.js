@@ -1,4 +1,5 @@
 "use strict";
+/* eslint-disable no-console */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -13,13 +14,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./app"));
-const mongoose = require('mongoose');
+const config_1 = __importDefault(require("./app/config"));
+const mongoose_1 = __importDefault(require("mongoose"));
+let server;
+// const mongoose = require("mongoose");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        yield mongoose.connect('mongodb://127.0.0.1:27017/test');
-        // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
-        app_1.default.listen(5000, () => {
-            console.log(`Blog Project listening on port 5000`);
-        });
+        try {
+            yield mongoose_1.default.connect(config_1.default.DATABASE_URL);
+            server = app_1.default.listen(config_1.default.port, () => {
+                console.log(`Blog project app listening on port ${config_1.default.port}`);
+            });
+        }
+        catch (err) {
+            console.log(err);
+        }
     });
 }
+main();
+process.on("unhandledRejection", () => {
+    console.log(`😈 unaHandledRejection is detected , shutting down ...`);
+    if (server) {
+        server.close(() => {
+            process.exit(1);
+        });
+    }
+    process.exit(1);
+});
+process.on("uncaughtException", () => {
+    console.log(`😈 uncaughtException is detected , shutting down ...`);
+    process.exit(1);
+});

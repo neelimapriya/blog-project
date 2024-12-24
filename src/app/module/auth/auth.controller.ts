@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import catchAsync from "../../utils/catchAsync";
-import { sendResponse, sendResponseWithToken } from "../../utils/sendResponse";
+import { sendResponse } from "../../utils/sendResponse";
 import { AuthService } from "./auth.service";
 
 const registerUser = catchAsync(async (req, res) => {

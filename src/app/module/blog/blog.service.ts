@@ -4,7 +4,8 @@ import { Blog } from "./blog.model";
 import AppError from "../../errors/appErrors";
 import { StatusCodes } from "http-status-codes";
 import { User } from "../users/user.model";
-import QueryBuilder from "../../builder/queryBuilder";
+import QueryBuilder from "../../builder/QueryBuilder";
+
 
 
 const createBlog = async (user: JwtPayload, payload: IBlog) => {

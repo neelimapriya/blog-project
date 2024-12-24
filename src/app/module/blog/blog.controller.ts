@@ -18,7 +18,7 @@ const createBlogs = catchAsync(async (req, res) => {
 
 const updateBlog = catchAsync(async (req, res) => {
   const { id } = req.params;
-  console.log(id);
+//   console.log(id);
   const user = req.user._id;
 //   console.log(user, "user");
   const payload = req.body;

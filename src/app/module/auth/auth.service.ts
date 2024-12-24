@@ -17,7 +17,7 @@ const registerUser = async (payload: TUser) => {
 const loginUser = async (payload: TLoginUser) => {
   // checking if the user is exist
   const user = await User.isUserExistsByEmail(payload.email);
-  console.log(user,'service');
+  // console.log(user,'service');
   if (!user) {
     throw new AppError(StatusCodes.NOT_FOUND, "This user is not found!");
   }
@@ -44,16 +44,9 @@ const loginUser = async (payload: TLoginUser) => {
     config.jwt_access_secret as string,
     config.jwt_access_expiresIn as string
   );
-  console.log(token);
+  // console.log(token);
 
-  // const refreshToken = createToken(
-  //   jwtPayload,
-  //   config.refresh_access_secret as string,
-  //   config.refresh_access_expiresIn as string,
-  // );
-  // console.log(refreshToken, 'refresh');
 
-  // console.log(payload);
   return {
     token, user
     //   refreshToken,

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import express, { Application } from "express";
 import app from "./app";
 import config from "./app/config";
@@ -14,7 +16,7 @@ async function main() {
       console.log(`Blog project app listening on port ${config.port}`);
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 main();
@@ -24,6 +26,7 @@ process.on("unhandledRejection", () => {
   if (server) {
     server.close(() => {
       process.exit(1);
+     
     });
   }
   process.exit(1);

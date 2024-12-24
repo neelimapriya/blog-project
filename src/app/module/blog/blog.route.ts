@@ -10,5 +10,6 @@ const router=Router()
 router.post('/',auth(User_Role.user),validateRequest(BlogValidation.createBlogValidationSchema),blogController.createBlogs)
 router.patch('/:id',auth(User_Role.user),validateRequest(BlogValidation.updateBlogValidationSchema),blogController.updateBlog)
 router.get('/',blogController.getAllBlogs)
+router.delete('/:id',auth(User_Role.user),blogController.deleteBlog)
 
 export const BlogRouter=router

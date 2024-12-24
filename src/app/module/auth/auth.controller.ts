@@ -17,15 +17,13 @@ const registerUser = catchAsync(async (req, res) => {
 
 const loginUser = catchAsync(async (req, res) => {
   const result = await AuthService.loginUser(req.body);
-  const { token, user } = result;
-
-  sendResponseWithToken(res, {
+  
+  sendResponse(res,{
     success: true,
-    message: "Login successful",
+    message: "User registered successfully",
+    data: result,
     statusCode: StatusCodes.OK,
-    token:token,
-   data: user,
-  });
+  })
 });
 
 export const authController = {
